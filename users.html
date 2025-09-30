@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><title>Users — ExplorerRestoringDigital</title>
+<style>.btn{background:#0052FF;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script></head>
+<body>
+<h2>Registered Users</h2>
+<div><button id="exportBtn" class="btn">Export to CSV</button></div>
+<div style="margin-top:12px"><button id="clearBtn" class="btn" style="background:#dc2626">Clear All Requests</button></div>
+<table id="usersTable"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody></tbody></table>
+<script>
+// export CSV placeholder
+document.getElementById("exportBtn").addEventListener("click",()=>alert("Export CSV triggered"));
+// Clear all requests
+document.getElementById("clearBtn").addEventListener("click",function(){
+  if(!confirm("⚠️ Are you sure you want to delete ALL recovery requests?")) return;
+  fetch("/.netlify/functions/clear-requests",{method:"POST",headers:{"Content-Type":"application/json"}})
+  .then(r=>r.json()).then(res=>{
+    if(res.success){alert("✅ Deleted "+(res.deleted||0)+" requests.");}
+    else{alert("❌ Failed: "+(res.error||"Unknown error"));}
+  }).catch(err=>alert("❌ Error: "+err.message));
+});
+</script>
+</body></html>
