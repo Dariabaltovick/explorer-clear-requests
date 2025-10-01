@@ -1,6 +1,3 @@
-[build]
-  publish = "."
-  functions = "netlify/functions"
-
-[identity]
-  enabled = true
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
