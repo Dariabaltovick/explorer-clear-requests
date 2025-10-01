@@ -1,0 +1,12 @@
+{
+  "name": "explorer-clear-requests",
+  "version": "1.0.0",
+  "description": "Netlify functions with FaunaDB",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"No build step\""
+  },
+  "dependencies": {
+    "faunadb": "^4.5.2"
+  }
+}
